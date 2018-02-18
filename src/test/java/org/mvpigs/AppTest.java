@@ -70,5 +70,25 @@ public class AppTest{
 
     }
 
+    @org.junit.Test
+    public void test7(){
+        Wallet origin = new Wallet();
+        origin.generateKeyPair();
+        Wallet wallet_1 = new Wallet();
+        wallet_1.generateKeyPair();
+        Wallet wallet_2 = new Wallet();
+        wallet_2.generateKeyPair();
+
+        BlockChain bChain = new BlockChain();
+        Transaction trx = new Transaction("hash_1", "0", origin.getAddress(), wallet_1.getAddress(), 20.0, "bacon eggs");
+        bChain.addOrigin(trx);
+        trx = new Transaction("hash_2", "1", origin.getAddress(), wallet_2.getAddress(), 10.0, "spam spam spam");
+        bChain.addOrigin(trx);
+        trx = new Transaction("hash_3", "hash_1", wallet_1.getAddress(), wallet_2.getAddress(), 20.0, "a flying pig!");
+        bChain.addOrigin(trx);
+
+        wallet_2.loadCoins(bChain);
+        Assert.assertEquals(30.0, wallet_2.getBalance(), 0.0);
+    }
 
 }
