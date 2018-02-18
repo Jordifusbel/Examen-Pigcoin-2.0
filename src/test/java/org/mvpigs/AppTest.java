@@ -21,5 +21,12 @@ public class AppTest{
         Assert.assertNotNull(wallet_1.getAddress());
 
     }
+    @org.junit.Test
+    public void test2(){
+        Wallet wallet_1 = new Wallet();
+        wallet_1.generateKeyPair();
+        Assert.assertNotNull(wallet_1.getAddress());
+        Assert.assertNotNull(wallet_1.getSK());
+    }
 
 }

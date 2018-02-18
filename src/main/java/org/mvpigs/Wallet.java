@@ -1,14 +1,15 @@
 package org.mvpigs;
 
+import java.security.KeyPair;
 import java.security.PrivateKey;
 import java.security.PublicKey;
 
 public class Wallet {
     private PublicKey address;
     private PrivateKey SK;
-    private Double total_Input;
-    private Double total_Output;
-    private Double balance;
+    private Double total_Input = 0.0;
+    private Double total_Output = 0.0;
+    private Double balance = total_Input - total_Output;
 
     public Wallet(){
 
@@ -53,4 +54,20 @@ public class Wallet {
     public void setBalance(Double balance) {
         this.balance = balance;
     }
+
+    public void generateKeyPair(){
+        KeyPair pair = GenSig.generateKeyPair();
+        this.setSK(pair.getPrivate());
+        this.setAddress(pair.getPublic());
+
+    }
+
+    public String toString(){
+        String cartera;
+        return cartera = "Wallet = " + getAddress().hashCode() + "\n"
+                + "Total Input = " + getTotal_Input() + "\n"
+                + "Total Output = " + getTotal_Output() + "\n"
+                + "Balance = " + getBalance() + "\n";
+    }
+
 }
