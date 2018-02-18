@@ -29,4 +29,14 @@ public class AppTest{
         Assert.assertNotNull(wallet_1.getSK());
     }
 
+//    @org.junit.Test  Para hacer este caso test, deberimos poder saber cual sera la clave publica para poder compararla
+//    public void test3(){
+//        Wallet wallet_1 = new Wallet();
+//        wallet_1.generateKeyPair();
+//        Assert.assertEquals("Wallet : '%%%%%%%'\n" +
+//                "Total Input : 0.0\n" +
+//                "Total Output : 0.0\n" +
+//                "Balance : 0.0\n", wallet_1.toString());
+//    }
+
 }
