@@ -26,4 +26,10 @@ public class BlockChain {
             System.out.println(this.blockChain.get(n).toString());
         }
     }
+    public void summarize(int index){
+        System.out.println(this.blockChain.get(index).toString());
+        }
+
 }
+
+
