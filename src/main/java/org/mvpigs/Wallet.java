@@ -51,8 +51,8 @@ public class Wallet {
         return balance;
     }
 
-    public void setBalance(Double balance) {
-        this.balance = balance;
+    public void setBalance() {
+        this.balance = this.getTotal_Input() - this.getTotal_Output();
     }
 
     public void generateKeyPair(){
@@ -70,4 +70,21 @@ public class Wallet {
                 + "Balance = " + getBalance() + "\n";
     }
 
+    public void loadCoins(BlockChain hist){
+        PublicKey llave = this.getAddress();
+        for (int n=0; n<hist.getBlockChain().size(); n++){
+            if (llave == hist.getBlockChain().get(n).getpKey_recipient()){
+                Double recibido = this.getTotal_Input();
+                recibido = recibido + hist.getBlockChain().get(n).getPigcoins();
+                this.setTotal_Input(recibido);
+                this.setBalance();
+            }else if (llave == hist.getBlockChain().get(n).getpKey_sender()){
+                Double enviado = this.getTotal_Output();
+                enviado = enviado + hist.getBlockChain().get(n).getPigcoins();
+                this.setTotal_Output(enviado);
+                this.setBalance();
+            }
+
+        }
+    }
 }

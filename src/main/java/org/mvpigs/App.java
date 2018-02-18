@@ -96,15 +96,15 @@ public class App {
 //         * que se han recibido
 //         * y el balance
 //         */
-//
-//        System.out.println("\n" + "Ver el total de pigcoins de las dos wallet" + "\n" +
-//                "=========================================="        );
-//
-//        wallet_1.loadCoins(bChain);
-//        System.out.println(wallet_1.toString());
-//
-//        wallet_2.loadCoins(bChain);
-//        System.out.println(wallet_2.toString());
+
+        System.out.println("\n" + "Ver el total de pigcoins de las dos wallet" + "\n" +
+                "=========================================="        );
+
+        wallet_1.loadCoins(bChain);
+        System.out.println(wallet_1.toString());
+
+        wallet_2.loadCoins(bChain);
+        System.out.println(wallet_2.toString());
 //
 //        /**
 //         * Carga en la wallet el total de transacciones
