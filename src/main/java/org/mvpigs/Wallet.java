@@ -3,6 +3,7 @@ package org.mvpigs;
 import java.security.KeyPair;
 import java.security.PrivateKey;
 import java.security.PublicKey;
+import java.util.ArrayList;
 
 public class Wallet {
     private PublicKey address;
@@ -10,9 +11,13 @@ public class Wallet {
     private Double total_Input = 0.0;
     private Double total_Output = 0.0;
     private Double balance = total_Input - total_Output;
+    private ArrayList<Transaction> inputTransactions;
+    private ArrayList<Transaction> outputTransactions;
+
 
     public Wallet(){
-
+        this.inputTransactions = new ArrayList<Transaction>();
+        this.outputTransactions = new ArrayList<Transaction>();
     }
 
     public PublicKey getAddress() {
@@ -55,6 +60,14 @@ public class Wallet {
         this.balance = this.getTotal_Input() - this.getTotal_Output();
     }
 
+    public ArrayList<Transaction> getInputTransactions() {
+        return inputTransactions;
+    }
+
+    public ArrayList<Transaction> getOutputTransactions() {
+        return outputTransactions;
+    }
+
     public void generateKeyPair(){
         KeyPair pair = GenSig.generateKeyPair();
         this.setSK(pair.getPrivate());
@@ -83,6 +96,23 @@ public class Wallet {
                 enviado = enviado + hist.getBlockChain().get(n).getPigcoins();
                 this.setTotal_Output(enviado);
                 this.setBalance();
+            }
+        }
+    }
+    public void loadInputTransactions(BlockChain hist) {
+        PublicKey llave = this.getAddress();
+        for (int n = 0; n < hist.getBlockChain().size(); n++) {
+            if (llave == hist.getBlockChain().get(n).getpKey_recipient()) {
+                this.inputTransactions.add(hist.getBlockChain().get(n));
+            }
+
+        }
+    }
+    public void loadOutputTransactions(BlockChain hist) {
+        PublicKey llave = this.getAddress();
+        for (int n = 0; n < hist.getBlockChain().size(); n++) {
+            if (llave == hist.getBlockChain().get(n).getpKey_sender()) {
+                this.outputTransactions.add(hist.getBlockChain().get(n));
             }
 
         }
