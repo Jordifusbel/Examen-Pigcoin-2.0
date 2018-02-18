@@ -38,5 +38,15 @@ public class AppTest{
 //                "Total Output : 0.0\n" +
 //                "Balance : 0.0\n", wallet_1.toString());
 //    }
+    @org.junit.Test
+    public void test4(){
+        Wallet wallet_1 = new Wallet();
+        wallet_1.generateKeyPair();
+        Wallet wallet_2 = new Wallet();
+        wallet_2.generateKeyPair();
+        Transaction trx = new Transaction("hash_1", "0", wallet_1.getAddress(), wallet_2.getAddress(), 20.0, "a flying pig!");
 
+        Assert.assertNotNull(trx.getpKey_recipient());
+        Assert.assertNotNull(trx.getpKey_sender());
+}
 }
